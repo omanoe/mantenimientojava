@@ -20,10 +20,8 @@ class ConduitJSONRenderer(JSONRenderer):
         # or something similar), `data` will contain an `errors` key. We want
         # the default JSONRenderer to handle rendering errors, so we need to
         # check for this case.
-        elif data.get('errors', None) is not None:
+        if data.get('errors', None) is not None:
             return super(ConduitJSONRenderer, self).render(data)
-
-        else:
-            return json.dumps({
-                self.object_label: data
-            })
+        return json.dumps({
+            self.object_label: data
+        })
