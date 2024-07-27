@@ -113,7 +113,7 @@ class UserSerializer(serializers.ModelSerializer):
     # so. Moreover, `UserSerializer` should never expose profile information,
     # so we set `write_only=True`.
     profile = ProfileSerializer(write_only=True)
-    
+
     # We want to get the `bio` and `image` fields from the related Profile
     # model.
     bio = serializers.CharField(source='profile.bio', read_only=True)
@@ -169,7 +169,7 @@ class UserSerializer(serializers.ModelSerializer):
             # We're doing the same thing as above, but this time we're making
             # changes to the Profile model.
             setattr(instance.profile, key, value)
-            
+
         # Save the profile just like we saved the user.
         instance.profile.save()
 
